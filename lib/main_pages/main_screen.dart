@@ -51,7 +51,7 @@ class _MainScreenState extends State<MainScreen> {
       body: tabs[index],
       floatingActionButton: FloatingActionButton(
         onPressed: () {},
-        child: Icon(Icons.add),
+        child: const Icon(Icons.add),
       ),
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: index,
