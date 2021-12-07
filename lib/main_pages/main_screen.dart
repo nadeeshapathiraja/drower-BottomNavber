@@ -1,6 +1,7 @@
 import 'package:drawer_and_bottomnavbar/main_pages/history_page/history_page.dart';
 import 'package:drawer_and_bottomnavbar/main_pages/home_page/home_screen.dart';
 import 'package:drawer_and_bottomnavbar/main_pages/profile_page/profile_screen.dart';
+import 'package:drawer_and_bottomnavbar/main_pages/targets/create_targets.dart';
 import 'package:drawer_and_bottomnavbar/main_pages/usage_page/usage_page.dart';
 import 'package:flutter/material.dart';
 
@@ -14,6 +15,7 @@ class MainScreen extends StatefulWidget {
 class _MainScreenState extends State<MainScreen> {
   int index = 0;
   List<Widget> tabs = [HomeScreen(), UsagePage(), HistoryPage(), ProfilePage()];
+  Widget? page = null;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -48,9 +50,13 @@ class _MainScreenState extends State<MainScreen> {
           ],
         ),
       ),
-      body: tabs[index],
+      body: (page == null) ? tabs[index] : page,
       floatingActionButton: FloatingActionButton(
-        onPressed: () {},
+        onPressed: () {
+          setState(() {
+            page = CreateTargets();
+          });
+        },
         child: const Icon(Icons.add),
       ),
       bottomNavigationBar: BottomNavigationBar(
@@ -58,6 +64,7 @@ class _MainScreenState extends State<MainScreen> {
         onTap: (i) {
           setState(() {
             index = i;
+            page = null;
           });
         },
         items: [
