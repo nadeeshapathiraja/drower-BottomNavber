@@ -1,3 +1,7 @@
+import 'package:drawer_and_bottomnavbar/main_pages/history_page/history_page.dart';
+import 'package:drawer_and_bottomnavbar/main_pages/home_page/home_screen.dart';
+import 'package:drawer_and_bottomnavbar/main_pages/profile_page/profile_screen.dart';
+import 'package:drawer_and_bottomnavbar/main_pages/usage_page/usage_page.dart';
 import 'package:flutter/material.dart';
 
 class MainScreen extends StatefulWidget {
@@ -8,6 +12,8 @@ class MainScreen extends StatefulWidget {
 }
 
 class _MainScreenState extends State<MainScreen> {
+  int index = 0;
+  List<Widget> tabs = [HomeScreen(), UsagePage(), HistoryPage(), ProfilePage()];
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -42,7 +48,65 @@ class _MainScreenState extends State<MainScreen> {
           ],
         ),
       ),
-      body: Text("Main Screen"),
+      body: tabs[index],
+      bottomNavigationBar: BottomNavigationBar(
+        currentIndex: index,
+        onTap: (i) {
+          setState(() {
+            index = i;
+          });
+        },
+        items: [
+          BottomNavigationBarItem(
+            icon: Icon(
+              Icons.home,
+              color: Colors.grey,
+            ),
+            title: Text(
+              "Home",
+              style: TextStyle(
+                color: Colors.grey,
+              ),
+            ),
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(
+              Icons.pie_chart,
+              color: Colors.grey,
+            ),
+            title: Text(
+              "Usage",
+              style: TextStyle(
+                color: Colors.grey,
+              ),
+            ),
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(
+              Icons.history,
+              color: Colors.grey,
+            ),
+            title: Text(
+              "History",
+              style: TextStyle(
+                color: Colors.grey,
+              ),
+            ),
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(
+              Icons.person,
+              color: Colors.grey,
+            ),
+            title: Text(
+              "Profile",
+              style: TextStyle(
+                color: Colors.grey,
+              ),
+            ),
+          ),
+        ],
+      ),
     );
   }
 }
