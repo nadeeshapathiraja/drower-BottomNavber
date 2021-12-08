@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "53219552284",
+    "project_id": "industrial-project-941c5",
+    "storage_bucket": "industrial-project-941c5.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:53219552284:android:a42fe5ffd34e88f54d83d9",
+        "android_client_info": {
+          "package_name": "com.techswords.target"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "53219552284-9i8l3hdrq2igb74s605lngc4t7cfdg3i.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAYkthz37E4BdCTDsa9HHKXFl8c7GUTAWU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "53219552284-9i8l3hdrq2igb74s605lngc4t7cfdg3i.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

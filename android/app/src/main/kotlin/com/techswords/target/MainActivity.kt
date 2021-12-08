@@ -1,4 +1,4 @@
-package com.example.drawer_and_bottomnavbar
+package com.techswords.target
 
 import io.flutter.embedding.android.FlutterActivity
 

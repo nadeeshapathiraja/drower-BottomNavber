@@ -1,5 +1,5 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.drawer_and_bottomnavbar">
+    package="com.techswords.target">
    <application
         android:label="drawer_and_bottomnavbar"
         android:icon="@mipmap/ic_launcher">
