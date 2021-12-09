@@ -14,33 +14,30 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: SingleChildScrollView(
-        child: StreamBuilder<QuerySnapshot>(
-          stream: _targetStreme,
-          builder:
-              (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
-            if (snapshot.hasError) {
-              return Text("Somthing went Error");
-            }
+      body: StreamBuilder<QuerySnapshot>(
+        stream: _targetStreme,
+        builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
+          if (snapshot.hasError) {
+            return Text("Somthing went Error");
+          }
 
-            if (snapshot.connectionState == ConnectionState.waiting) {
-              return Text("Loading");
-            }
-            return ListView(
-              children: snapshot.data!.docs.map((DocumentSnapshot document) {
-                Map<String, dynamic> data =
-                    document.data()! as Map<String, dynamic>;
-                dynamic doc = document.data();
-                return ListTile(
-                  // title: Text(data['name']),
-                  // subtitle: Text(data['amount']),
-                  title: Text(doc['name']),
-                  subtitle: Text(doc['amount'].toString()),
-                );
-              }).toList(),
-            );
-          },
-        ),
+          if (snapshot.connectionState == ConnectionState.waiting) {
+            return Text("Loading");
+          }
+          return ListView(
+            children: snapshot.data!.docs.map((DocumentSnapshot document) {
+              Map<String, dynamic> data =
+                  document.data()! as Map<String, dynamic>;
+              dynamic doc = document.data();
+              return ListTile(
+                // title: Text(data['name']),
+                // subtitle: Text(data['amount']),
+                title: Text(doc['name']),
+                subtitle: Text(doc['amount'].toString()),
+              );
+            }).toList(),
+          );
+        },
       ),
     );
   }
