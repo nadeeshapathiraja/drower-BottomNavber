@@ -10,9 +10,10 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
+  bool isExpanded = false;
   final Stream<QuerySnapshot> _targetStreme =
       FirebaseFirestore.instance.collection("targets").snapshots();
-  bool isExpanded = false;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -54,9 +55,8 @@ class _HomeScreenState extends State<HomeScreen> {
                               Text(
                                 "Amount: " + doc['amount'].toString(),
                               ),
-                              Text(
-                                "Date: " + doc['date'],
-                              ),
+                              Text("Date: " +
+                                  doc["date"].toString().split(" ")[0]),
                             ],
                           ),
                           Divider(
