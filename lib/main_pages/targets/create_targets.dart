@@ -72,7 +72,7 @@ class _CreateTargetsState extends State<CreateTargets> {
                       ElevatedButton(
                         onPressed: () {
                           String name = txtname.text;
-                          String amount = txtamount.text;
+                          double amount = double.parse(txtamount.text);
 
                           FirebaseFirestore.instance.collection("targets").add(
                             {

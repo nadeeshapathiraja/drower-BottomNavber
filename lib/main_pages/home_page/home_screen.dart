@@ -55,8 +55,14 @@ class _HomeScreenState extends State<HomeScreen> {
                               Text(
                                 "Amount: " + doc['amount'].toString(),
                               ),
-                              Text("Date: " +
-                                  doc["date"].toString().split(" ")[0]),
+                              Text(
+                                "Date: " +
+                                    doc["date"]
+                                        .toDate()
+                                        .toString()
+                                        .split(" ")[0],
+                                // DateTime.parse(doc["date"].toDate().toString())
+                              ),
                             ],
                           ),
                           Divider(
