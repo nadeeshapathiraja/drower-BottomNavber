@@ -10,6 +10,9 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
+  TextEditingController txtAmount = TextEditingController();
+  TextEditingController txtNote = TextEditingController();
+
   bool isExpanded = false;
   final Stream<QuerySnapshot> _targetStreme =
       FirebaseFirestore.instance.collection("targets").snapshots();
@@ -88,7 +91,9 @@ class _HomeScreenState extends State<HomeScreen> {
                                 icon: Icon(Icons.attach_money),
                                 splashColor: Colors.amber,
                                 color: Colors.green,
-                                onPressed: () {},
+                                onPressed: () {
+                                  _showMyDialog();
+                                },
                               )
                             ],
                           ),
@@ -130,18 +135,26 @@ class _HomeScreenState extends State<HomeScreen> {
       barrierDismissible: false, // user must tap button!
       builder: (BuildContext context) {
         return AlertDialog(
-          title: const Text('AlertDialog Title'),
+          title: const Text('Enter Contribution'),
           content: SingleChildScrollView(
             child: ListBody(
-              children: const <Widget>[
-                Text('This is a demo alert dialog.'),
-                Text('Would you like to approve of this message?'),
+              children: [
+                Text('Enter Amount'),
+                TextFormField(
+                  controller: txtAmount,
+                  keyboardType: TextInputType.number,
+                ),
+                SizedBox(height: 15),
+                Text('Note'),
+                TextFormField(
+                  controller: txtNote,
+                ),
               ],
             ),
           ),
           actions: <Widget>[
             TextButton(
-              child: const Text('Approve'),
+              child: const Text('Add'),
               onPressed: () {
                 Navigator.of(context).pop();
               },
