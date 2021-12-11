@@ -27,7 +27,15 @@ class _HomeScreenState extends State<HomeScreen> {
             }
 
             if (snapshot.connectionState == ConnectionState.waiting) {
-              return Text("Loading");
+              return Container(
+                height: MediaQuery.of(context).size.height,
+                width: MediaQuery.of(context).size.width,
+                child: Center(
+                  child: CircularProgressIndicator(
+                    semanticsLabel: 'Linear progress indicator',
+                  ),
+                ),
+              );
             }
             return ExpansionPanelList(
               children: snapshot.data!.docs.map((DocumentSnapshot document) {
