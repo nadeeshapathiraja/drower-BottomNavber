@@ -92,7 +92,8 @@ class _HomeScreenState extends State<HomeScreen> {
                                 splashColor: Colors.amber,
                                 color: Colors.green,
                                 onPressed: () {
-                                  _showMyDialog();
+                                  String tid = document.id;
+                                  _showMyDialog(tid);
                                 },
                               )
                             ],
@@ -129,7 +130,7 @@ class _HomeScreenState extends State<HomeScreen> {
     );
   }
 
-  Future<void> _showMyDialog() async {
+  Future<void> _showMyDialog(tid) async {
     return showDialog<void>(
       context: context,
       barrierDismissible: false, // user must tap button!
@@ -156,7 +157,35 @@ class _HomeScreenState extends State<HomeScreen> {
             TextButton(
               child: const Text('Add'),
               onPressed: () {
-                Navigator.of(context).pop();
+                String amount = txtAmount.text;
+                String note = txtNote.text;
+
+                if (amount.isNotEmpty && note.isNotEmpty) {
+                  FirebaseFirestore.instance.collection('contributions').add(
+                    {
+                      'amount': int.parse(amount),
+                      'note': note,
+                      'date': new DateTime.now(),
+                      'target_id': tid,
+                    },
+                  );
+                  FirebaseFirestore.instance
+                      .collection('targets')
+                      .doc(tid)
+                      .update(
+                    {
+                      'contribution_total': FieldValue.increment(
+                        int.parse(amount),
+                      ),
+                    },
+                  );
+                  txtAmount.text = '';
+                  txtNote.text = '';
+
+                  Navigator.of(context).pop();
+                } else {
+                  Navigator.of(context).pop();
+                }
               },
             ),
           ],
